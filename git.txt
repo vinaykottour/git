@@ -1,0 +1,33 @@
+1c9375196a0c46e586c4ec97266c855epipeline {
+    agent any
+    
+    stages {
+        stage('Code') {
+            steps {
+                echo 'Cloning the code'
+                git url: 'https://github.com/vinaykottour/project-2-jenkins-nodejs-docker.git', branch: 'master'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building the code'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing the code'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                // Build the Docker image with lowercase tag
+                sh 'docker build -t nodejs:latest .'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the code'
+            }
+        }
+    }
+}
